@@ -13,5 +13,6 @@ SOURCES += \
     $$PWD/dllmain.cpp \
     $$PWD/stdafx.cpp
 
+INCLUDEPATH += $$PWD
 
 LIBS += -luser32 -lshell32 -ladvapi32
