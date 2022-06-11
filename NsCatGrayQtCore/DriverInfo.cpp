@@ -59,8 +59,6 @@ std::wstring DriveInfo::GetVolume(int nDrive) {
 
     assert(nDrive > 0 && nDrive <= 26);
 
-
-
     if (IsDriveAvailable(nDrive)) {
         sRoot = GetRoot(nDrive);
 

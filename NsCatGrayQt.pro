@@ -1,8 +1,8 @@
-TARGET = NsCatGrayQtPlugin
+TEMPLATE = subdirs
 
-TEMPLATE = lib
-CONFIG += staticlib
+SUBDIRS += \
+    CatQtPlugins/WidgetPlugin/QtWidgetPlugin.pro
 
-include($$PWD/NsCatGrayQtCore/NsCatGrayQtCore.pri)
 
-!isEmpty(target.path): INSTALLS += target
+# 顺序编译
+CONFIG += ordered
