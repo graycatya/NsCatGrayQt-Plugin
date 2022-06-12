@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.10)
+
+project(NsCatGrayQt-Plugin LANGUAGES CXX)
+
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+message(STATUS ${CMAKE_CURRENT_SOURCE_DIR})
+
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/CatQtPlugins/WidgetPlugin QtWidgetPlugin.out)

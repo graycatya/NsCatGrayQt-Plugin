@@ -70,8 +70,6 @@ Thumbs.db
 /x64/
 /build*/
 *.user.*
-/.qt_for_python
-/.vscode
 
 # qtcreator generated files
 *.pro.user*

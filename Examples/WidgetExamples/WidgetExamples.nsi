@@ -3,7 +3,7 @@
 !define PRODUCT_NAME           "WidgetExamples"
 !define EXE_NAME               "WidgetExamples.exe"
 !define EXE_RELATIVE_PATH      "bin\WidgetExamples.exe"
-!define PRODUCT_VERSION        ""
+!define PRODUCT_VERSION        "0.0.0.0"
 !define PRODUCT_PUBLISHER      "WidgetExamples"
 !define PRODUCT_LEGAL          "Copyright (C) 1999-2022 , All Rights Reserved"
 !define INSTALL_ICON_PATH      "../Resource/logo.ico"
@@ -38,7 +38,9 @@ VIAddVersionKey "LegalCopyright"    "${PRODUCT_LEGAL}"
 # ==================== NSIS Attribute ================================
 
 Unicode True
+
 SetCompressor LZMA
+
 !ifdef DEBUG
 Name "${PRODUCT_NAME} [Debug]"
 OutFile "${PRODUCT_NAME}Setup-Debug.exe"
@@ -64,6 +66,7 @@ UninstPage instfiles
 
 # ======================= Qt Page =========================
 Function QtUiPage
+	
 	${UI_PLUGIN_NAME}::OutputDebugInfo "NSIS Plugin Dir: $PLUGINSDIR"
 	
 	GetFunctionAddress $0 OnUIPrepared
@@ -135,6 +138,72 @@ Function OnBeforeFinished
 	${EndIf}
 FunctionEnd
 
+Function ___ExtractFiles
+
+    SetOutPath "$INSTDIR"
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "Clear" 0
+	Sleep 500
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "" 5
+	Sleep 500
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "" 10
+	Sleep 500
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "" 15
+	Sleep 500
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "" 20
+	Sleep 500
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "" 25
+	Sleep 500
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "" 30
+	Sleep 500
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "" 35
+	Sleep 500
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "" 40
+	Sleep 500
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "" 45
+	Sleep 500
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "" 50
+	Sleep 500
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "" 55
+	Sleep 500
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "" 60
+	Sleep 500
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "" 65
+	Sleep 500
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "" 70
+	Sleep 500
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "" 75
+	Sleep 500
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "" 80
+	Sleep 500
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "" 85
+	Sleep 500
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "" 90
+	Sleep 500
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "" 92
+	Sleep 500
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "" 94
+	Sleep 500
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "" 96
+	Sleep 500
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "" 97
+	Sleep 500
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "" 98
+	Sleep 500
+	${UI_PLUGIN_NAME}::SetInstallStepDescription "Finished" 100
+	Call OnAfterExtractFiles
+
+FunctionEnd
+
+Function OnAfterExtractFiles
+
+	${UI_PLUGIN_NAME}::OutputDebugInfo "OnAfterExtractFiles"
+
+	${UI_PLUGIN_NAME}::NsisExtractFilesFinished
+
+	Call CreateUninstall
+
+FunctionEnd
+
 
 Function CreateUninstall
 	WriteUninstaller "$INSTDIR\uninst.exe"
@@ -144,54 +213,11 @@ Function CreateUninstall
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}" "Publisher" "$INSTDIR\${PRODUCT_PUBLISHER}"
 FunctionEnd
 
+
 # Add an empty section, avoid compile error.
-var SubProc
-XPStyle on
-Section "Test"
-Sleep 500
-Sleep 500
-Sleep 500
-Sleep 500
-Sleep 500
-Sleep 500
-Sleep 500
-Sleep 500
-Sleep 500
-Sleep 500
-Sleep 500
-Sleep 500
-Sleep 500
-Sleep 500
-Sleep 500
-Sleep 500
-Sleep 500
-Sleep 500
-Sleep 500
-Sleep 500
-Sleep 500
-Sleep 500
-Sleep 500
-Sleep 500
+Section "None"
+
 SectionEnd
-
-Function instshow
-#借用WndSubclass插件设定timer函数地址(尝试过直接为settimer设定函数地址,但没有插件支持很困难)
-${WndSubclass_Subclass} $HWNDPARENT SubProc $SubProc $SubProc
-System::Call user32::SetTimer(i$HWNDPARENT,i1,i500,i0)
-FunctionEnd
-
-Function SubProc
-FindWindow $0 "#32770" "" $HWNDPARENT
-GetDlgItem $0 $0 1004
-SendMessage $0 0x0407 0 0 $1
-SendMessage $0 0x0408 0 0 $2
-IntOp $2 $2 * 100
-IntOp $1 $2 / $1
-DetailPrint $1%
-${if} $1 = 100
-System::Call user32::KillTimer(i$HWNDPARENT,i1)
-${Endif}
-FunctionEnd
 
 
 # Uninstall Section
@@ -254,21 +280,40 @@ FunctionEnd
 
 Function .onInstSuccess
 
+
+
 FunctionEnd
+
+
+
 
 
 Function .onInstFailed
+
     MessageBox MB_ICONQUESTION|MB_YESNO "Install Failed!" /SD IDYES IDYES +2 IDNO +1
+
 FunctionEnd
+
+
+
+
 
 
 
 # Before Uninstall
+
 Function un.onInit
+
     MessageBox MB_ICONQUESTION|MB_YESNO "Are you sure to uninstall ${PRODUCT_NAME}?" /SD IDYES IDYES +2 IDNO +1
+
     Abort
+
 FunctionEnd
 
+
+
 Function un.onUninstSuccess
+
+
 
 FunctionEnd
