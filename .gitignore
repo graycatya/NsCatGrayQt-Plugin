@@ -72,6 +72,7 @@ Thumbs.db
 *.user.*
 /.qt_for_python
 /.vscode
+/.vs
 
 # qtcreator generated files
 *.pro.user*

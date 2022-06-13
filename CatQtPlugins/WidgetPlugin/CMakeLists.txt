@@ -55,6 +55,14 @@ if(CMAKE_BUILD_TYPE AND (CMAKE_BUILD_TYPE STREQUAL "Debug"))
     target_link_libraries(${PROJECT_NAME}d PRIVATE NsCatGrayQtCorel)
 
     target_include_directories(${PROJECT_NAME}d PUBLIC ${PROJECT_SOURCE_DIR})
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/CatQtPlugins/WidgetPlugin/${PROJECT_NAME}d.dll)
+
+    set(NSIS_DIR $ENV{NSIS_DIR}/Plugins/x86-unicode/${PROJECT_NAME}d.dll)
+
+    execute_process(COMMAND ${CMAKE_COMMAND} -E
+    copy "${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}"  "${NSIS_DIR}"
+    )
+
 elseif(CMAKE_BUILD_TYPE AND (CMAKE_BUILD_TYPE STREQUAL "Release"))
     add_library(${PROJECT_NAME} SHARED ${CURPATH_DIR_LIB_SRCS}
                                         ${PROJECT_QRC_FILES}
@@ -72,9 +80,17 @@ elseif(CMAKE_BUILD_TYPE AND (CMAKE_BUILD_TYPE STREQUAL "Release"))
     target_link_libraries(${PROJECT_NAME} PRIVATE NsCatGrayQtCorel)
 
     target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/CatQtPlugins/WidgetPlugin/${PROJECT_NAME}.dll)
+
+    set(NSIS_DIR $ENV{NSIS_DIR}/Plugins/x86-unicode/${PROJECT_NAME}.dll)
+
+    execute_process(COMMAND ${CMAKE_COMMAND} -E
+    copy "${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}"  "${NSIS_DIR}"
+    )
+
 else()
 endif()
 
-
+message(STATUS ${CMAKE_BINARY_DIR})
 
 
