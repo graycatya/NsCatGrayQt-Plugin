@@ -257,21 +257,29 @@ Function .onInit
     File /oname=$PLUGINSDIR\Qt5Quick${QT_DLL_SUFFIX}.dll "$%QTDIR%\bin\Qt5Quick${QT_DLL_SUFFIX}.dll"
 
     CreateDirectory $PLUGINSDIR\qml
+	SetoutPath $PLUGINSDIR\qml
     File /oname=$PLUGINSDIR\qml\builtins.qmltypes "$%QTDIR%\qml\builtins.qmltypes"
     CreateDirectory $PLUGINSDIR\qml\Qt
-    File /r "$%QTDIR%\qml\Qt"
+	SetoutPath $PLUGINSDIR\qml\Qt
+    File /r "$%QTDIR%\qml\Qt\*"
     CreateDirectory $PLUGINSDIR\qml\QtGraphicalEffects
-    File /r "$%QTDIR%\qml\QtGraphicalEffects"
+	SetoutPath $PLUGINSDIR\qml\QtGraphicalEffects
+    File /r "$%QTDIR%\qml\QtGraphicalEffects\*"
     CreateDirectory $PLUGINSDIR\qml\QtLocation
-    File /r "$%QTDIR%\qml\QtLocation"
+	SetoutPath $PLUGINSDIR\qml\QtLocation
+    File /r "$%QTDIR%\qml\QtLocation\*"
     CreateDirectory $PLUGINSDIR\qml\QtQml
-    File /r "$%QTDIR%\qml\QtQml"
+	SetoutPath $PLUGINSDIR\qml\QtQml
+    File /r "$%QTDIR%\qml\QtQml\*"
     CreateDirectory $PLUGINSDIR\qml\QtQuick
-    File /r "$%QTDIR%\qml\QtQuick"
+	SetoutPath $PLUGINSDIR\qml\QtQuick
+    File /r "$%QTDIR%\qml\QtQuick\*"
     CreateDirectory $PLUGINSDIR\qml\QtQuick.2
-    File /r "$%QTDIR%\qml\QtQuick.2"
-    CreateDirectory $PLUGINSDIR\qml\QtQuick.2
-    File /r "$%QTDIR%\qml\QtWinExtras"
+	SetoutPath $PLUGINSDIR\qml\QtQuick.2
+    File /r "$%QTDIR%\qml\QtQuick.2\*"
+    CreateDirectory $PLUGINSDIR\qml\QtWinExtras
+	SetoutPath $PLUGINSDIR\qml\QtWinExtras
+    File /r "$%QTDIR%\qml\QtWinExtras\*"
 	
 	CreateDirectory $PLUGINSDIR\audio
 	File /oname=$PLUGINSDIR\audio\qtaudio_wasapi${QT_DLL_SUFFIX}.dll "$%QTDIR%\plugins\audio\qtaudio_wasapi${QT_DLL_SUFFIX}.dll"

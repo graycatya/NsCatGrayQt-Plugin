@@ -33,7 +33,7 @@ set(PROJECT_QRC_SOURCE_FILES ${PROJECT_SOURCE_DIR}/Resources/Resource.qrc)
 qt5_add_resources(PROJECT_QRC_FILES ${PROJECT_QRC_SOURCE_FILES})
 
 
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../../NsCatGrayQtCore NsCatGrayQtCore.out)
+
 
 file(GLOB SRC_HEAD_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
 file(GLOB SRC_UI_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.ui")

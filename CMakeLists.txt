@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+﻿cmake_minimum_required(VERSION 3.10)
 
 project(NsCatGrayQt-Plugin LANGUAGES CXX)
 
@@ -18,4 +18,6 @@ add_definitions("-DUNICODE -D_UNICODE")
 
 message(STATUS ${CMAKE_CURRENT_SOURCE_DIR})
 
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/NsCatGrayQtCore NsCatGrayQtCore.out)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/CatQtPlugins/WidgetPlugin)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/CatQtPlugins/QuickPlugin)
