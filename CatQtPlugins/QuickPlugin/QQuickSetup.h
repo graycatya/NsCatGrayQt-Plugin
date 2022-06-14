@@ -1,7 +1,7 @@
-#ifndef QWIDGETSETUP_H
-#define QWIDGETSETUP_H
+#ifndef QQUICKSETUP_H
+#define QQUICKSETUP_H
 
-#include <QWidget>
+#include <QObject>
 #include <QtGlobal>
 #include <QtWidgets/QApplication>
 #include <QMap>
@@ -10,19 +10,14 @@
 #include <future>
 #include "SetupPageInterface.h"
 
-namespace Ui {
-class QWidgetSetup;
-}
-
-class QWidgetSetup :
-        public QWidget
+class QQuickSetup :
+        public QObject
         , public SetupPageInterface
 {
     Q_OBJECT
-
 public:
-    explicit QWidgetSetup(QWidget *parent = nullptr);
-    ~QWidgetSetup();
+    explicit QQuickSetup(QObject *parent = nullptr);
+    ~QQuickSetup();
 
     void SetTitle(const tstring &title) override;
     void SetRequiredSpaceKb(long kb) override;
@@ -34,19 +29,33 @@ public:
     bool IsAutoStartupOnBootEnabled() override;
 
 private:
-    void InitUi();
-    void InitProperty();
     void InitConnect();
 
-    void updateDriverInfo();
-    void exitSetup();
+    Q_INVOKABLE void updateDriverInfo();
+    Q_INVOKABLE void exitSetup();
+
+    Q_INVOKABLE void updateInstallDirectory(QString dir);
+
+signals:
+    void setTitle(QString title);
+    void setRequiredSpaceKbStr(QString str);
+    void setInstallDirectory(QString dir);
+    void setInstallStepDescription(QString description, int progressvalue);
+    void nsisExtractFilesFinished();
+    void isCreateDesktopShortcutEnabled();
+    void isAutoStartupOnBootEnabled();
+    void updateLanguage();
+    void closeed();
 
 private:
-    Ui::QWidgetSetup *ui;
     long m_requiredSpaceKb;
     std::future<void> m_addListItemAsync;
     QMutex m_waitingAddItemsMutex;
     QStringList m_waitingAddItems;
+    QString m_installDirectory;
+    bool m_desktopShortcut = false;
+    bool m_boxAutoStartupOnBoot = false;
+
 };
 
-#endif // QWIDGETSETUP_H
+#endif // QQUICKSETUP_H

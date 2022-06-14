@@ -50,6 +50,12 @@ void QWidgetSetup::SetInstallStepDescription(const tstring &description, int pro
         if (progressValue >= 0 && progressValue <= 100) {
             ui->ProgressBarInstall->setValue(progressValue);
         }
+        if(progressValue >= 0 && progressValue < 100)
+        {
+            ui->ToFinishedButton->setEnabled(false);
+        } else {
+            ui->ToFinishedButton->setEnabled(true);
+        }
     }, Qt::QueuedConnection);
 
     m_waitingAddItemsMutex.lock();

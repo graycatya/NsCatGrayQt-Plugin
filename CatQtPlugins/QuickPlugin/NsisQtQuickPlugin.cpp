@@ -1,5 +1,7 @@
 #include "stdafx.h"
-#include "QWidgetSetup.h"
+#include "QQuickSetup.h"
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
 
 wchar_t *QString2Wchar(QString buf)
 {
@@ -47,13 +49,24 @@ NSISAPI ShowSetupUI(HWND hwndParent, int stringSize, TCHAR *variables, stack_t *
     char currentPath[MAX_PATH] = { 0 };
     GetModuleFileNameA(NULL, currentPath, MAX_PATH);
     char *argv[2] = { {currentPath}, {} };
-    QApplication app(argc, argv);
+    QGuiApplication app(argc, argv);
+    QQmlApplicationEngine engine;
 
-    QWidgetSetup *mainPage = new QWidgetSetup();
-    mainPage->setWindowTitle(tstringToQString(szTitle));
-    mainPage->SetInstallDirectory(szDefaultInstallDir);
+    QQuickSetup *mainPage = new QQuickSetup();
+    engine.rootContext()->setContextProperty("qquicksetup", mainPage);
+
     PluginContext::Instance()->SetSetupPage(mainPage);
-    mainPage->show();
+
+    const QUrl url(QStringLiteral("qrc:///qml/main.qml"));
+    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
+                     &app, [url](QObject *obj, const QUrl &objUrl) {
+        if (!obj && url == objUrl)
+            QCoreApplication::exit(-1);
+    }, Qt::QueuedConnection);
+    engine.load(url);
+
+    mainPage->SetTitle(szTitle);
+    mainPage->SetInstallDirectory(szDefaultInstallDir);
     app.exec();
 }
 

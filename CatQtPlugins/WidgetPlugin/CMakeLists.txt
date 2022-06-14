@@ -14,6 +14,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+add_definitions("-DUNICODE -D_UNICODE")
+
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../module/cmake")
 
 include(GrayCatQt)
@@ -48,9 +50,7 @@ if(CMAKE_BUILD_TYPE AND (CMAKE_BUILD_TYPE STREQUAL "Debug"))
               Qt${QT_VERSION_MAJOR}::Gui
               Qt${QT_VERSION_MAJOR}::Widgets)
 
-    if(WIN32)
-        target_link_libraries(${PROJECT_NAME}d PRIVATE dwmapi user32 shell32 advapi32)
-    endif()
+    target_link_libraries(${PROJECT_NAME}d PRIVATE dwmapi user32 shell32 advapi32)
 
     target_link_libraries(${PROJECT_NAME}d PRIVATE NsCatGrayQtCorel)
 
@@ -73,9 +73,7 @@ elseif(CMAKE_BUILD_TYPE AND (CMAKE_BUILD_TYPE STREQUAL "Release"))
               Qt${QT_VERSION_MAJOR}::Gui
               Qt${QT_VERSION_MAJOR}::Widgets)
 
-    if(WIN32)
-        target_link_libraries(${PROJECT_NAME} PRIVATE dwmapi user32 shell32 advapi32)
-    endif()
+    target_link_libraries(${PROJECT_NAME} PRIVATE dwmapi user32 shell32 advapi32)
 
     target_link_libraries(${PROJECT_NAME} PRIVATE NsCatGrayQtCorel)
 

@@ -1,21 +1,21 @@
 # ========================= User Defined Macro ==============================
 # Most time you just need edit user defined macro
-!define PRODUCT_NAME           "WidgetExamples"
-!define EXE_NAME               "WidgetExamples.exe"
-!define EXE_RELATIVE_PATH      "bin\WidgetExamples.exe"
+!define PRODUCT_NAME           "QuickExamples"
+!define EXE_NAME               "QuickExamples.exe"
+!define EXE_RELATIVE_PATH      "bin\QuickExamples.exe"
 !define PRODUCT_VERSION        "0.0.0.0"
-!define PRODUCT_PUBLISHER      "WidgetExamples"
+!define PRODUCT_PUBLISHER      "QuickExamples"
 !define PRODUCT_LEGAL          "Copyright (C) 1999-2022 , All Rights Reserved"
 !define INSTALL_ICON_PATH      "../Resource/logo.ico"
 !define UNINSTALL_ICON_PATH    "../Resource/logo.ico"
 !define DEFAULT_INSTALL_DIR    "$PROGRAMFILES\${PRODUCT_NAME}"
 
 !ifdef DEBUG
-!define UI_PLUGIN_NAME         QtWidgetPlugind
+!define UI_PLUGIN_NAME         QtQuickPlugind
 !define VC_RUNTIME_DLL_SUFFIX  d
 !define QT_DLL_SUFFIX          d
 !else
-!define UI_PLUGIN_NAME         QtWidgetPlugin
+!define UI_PLUGIN_NAME         QtQuickPlugin
 !define VC_RUNTIME_DLL_SUFFIX
 !define QT_DLL_SUFFIX
 !endif
@@ -252,6 +252,26 @@ Function .onInit
 	File /oname=$PLUGINSDIR\Qt5Gui${QT_DLL_SUFFIX}.dll "$%QTDIR%\bin\Qt5Gui${QT_DLL_SUFFIX}.dll"
 	File /oname=$PLUGINSDIR\Qt5Widgets${QT_DLL_SUFFIX}.dll "$%QTDIR%\bin\Qt5Widgets${QT_DLL_SUFFIX}.dll"
 	File /oname=$PLUGINSDIR\Qt5Svg${QT_DLL_SUFFIX}.dll "$%QTDIR%\bin\Qt5Svg${QT_DLL_SUFFIX}.dll"
+    File /oname=$PLUGINSDIR\Qt5Qml${QT_DLL_SUFFIX}.dll "$%QTDIR%\bin\Qt5Qml${QT_DLL_SUFFIX}.dll"
+    File /oname=$PLUGINSDIR\Qt5NetWork${QT_DLL_SUFFIX}.dll "$%QTDIR%\bin\Qt5NetWork${QT_DLL_SUFFIX}.dll"
+    File /oname=$PLUGINSDIR\Qt5Quick${QT_DLL_SUFFIX}.dll "$%QTDIR%\bin\Qt5Quick${QT_DLL_SUFFIX}.dll"
+
+    CreateDirectory $PLUGINSDIR\qml
+    File /oname=$PLUGINSDIR\qml\builtins.qmltypes "$%QTDIR%\qml\builtins.qmltypes"
+    CreateDirectory $PLUGINSDIR\qml\Qt
+    File /r "$%QTDIR%\qml\Qt"
+    CreateDirectory $PLUGINSDIR\qml\QtGraphicalEffects
+    File /r "$%QTDIR%\qml\QtGraphicalEffects"
+    CreateDirectory $PLUGINSDIR\qml\QtLocation
+    File /r "$%QTDIR%\qml\QtLocation"
+    CreateDirectory $PLUGINSDIR\qml\QtQml
+    File /r "$%QTDIR%\qml\QtQml"
+    CreateDirectory $PLUGINSDIR\qml\QtQuick
+    File /r "$%QTDIR%\qml\QtQuick"
+    CreateDirectory $PLUGINSDIR\qml\QtQuick.2
+    File /r "$%QTDIR%\qml\QtQuick.2"
+    CreateDirectory $PLUGINSDIR\qml\QtQuick.2
+    File /r "$%QTDIR%\qml\QtWinExtras"
 	
 	CreateDirectory $PLUGINSDIR\audio
 	File /oname=$PLUGINSDIR\audio\qtaudio_wasapi${QT_DLL_SUFFIX}.dll "$%QTDIR%\plugins\audio\qtaudio_wasapi${QT_DLL_SUFFIX}.dll"
