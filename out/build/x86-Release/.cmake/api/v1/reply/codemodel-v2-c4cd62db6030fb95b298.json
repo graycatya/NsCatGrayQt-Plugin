@@ -1,0 +1,201 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3
+					],
+					"jsonFile" : "directory-.-RelWithDebInfo-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						6
+					]
+				},
+				{
+					"build" : "NsCatGrayQtCore.out",
+					"jsonFile" : "directory-NsCatGrayQtCore.out-RelWithDebInfo-4aec75d9b4111597567a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "NsCatGrayQtCore",
+					"targetIndexes" : 
+					[
+						1,
+						4,
+						5
+					]
+				},
+				{
+					"build" : "CatQtPlugins/WidgetPlugin",
+					"jsonFile" : "directory-CatQtPlugins.WidgetPlugin-RelWithDebInfo-d054fe444637953222c3.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "CatQtPlugins/WidgetPlugin",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "CatQtPlugins/QuickPlugin",
+					"jsonFile" : "directory-CatQtPlugins.QuickPlugin-RelWithDebInfo-01b4c3bd3d3825671ce9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 3,
+					"source" : "CatQtPlugins/QuickPlugin",
+					"targetIndexes" : 
+					[
+						3
+					]
+				}
+			],
+			"name" : "RelWithDebInfo",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "NsCatGrayQt-Plugin",
+					"targetIndexes" : 
+					[
+						0,
+						6
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "NsCatGrayQtCore",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						4,
+						5
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "QtWidgetPlugin",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3
+					],
+					"name" : "QtQuickPlugin",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-f69a1f6e3462c3eb68d2.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ALL_BUILD::@997ab15c00c90af9052f",
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-684ea45548321b4ec2df.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ALL_BUILD::@4f004f8c39ea2b2b4a19",
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-0aa39fed8b76e385e029.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "ALL_BUILD::@ddfa7caa39ebe3ad2200",
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-4bb2952ed6cfb59ebb91.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "NsCatGrayQtCore::@997ab15c00c90af9052f",
+					"jsonFile" : "target-NsCatGrayQtCore-RelWithDebInfo-04a9cafe8d27842286fe.json",
+					"name" : "NsCatGrayQtCore",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "NsCatGrayQtCorel::@997ab15c00c90af9052f",
+					"jsonFile" : "target-NsCatGrayQtCorel-RelWithDebInfo-a17547a007627baf56e6.json",
+					"name" : "NsCatGrayQtCorel",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-RelWithDebInfo-d69aff6ef4436f73a0d2.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/code/NsCatGrayQt-Plugin/out/build/x86-Release",
+		"source" : "D:/code/NsCatGrayQt-Plugin"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

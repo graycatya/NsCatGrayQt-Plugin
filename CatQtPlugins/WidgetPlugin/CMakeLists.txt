@@ -14,8 +14,6 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_definitions("-DUNICODE -D_UNICODE")
-
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../module/cmake")
 
 include(GrayCatQt)
@@ -41,10 +39,11 @@ file(GLOB SRC_UI_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.ui")
 filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS)
 
 if(CMAKE_BUILD_TYPE AND (CMAKE_BUILD_TYPE STREQUAL "Debug"))
-    add_library(${PROJECT_NAME}d SHARED ${CURPATH_DIR_LIB_SRCS}
+    add_library(${PROJECT_NAME}d MODULE ${CURPATH_DIR_LIB_SRCS}
                                         ${PROJECT_QRC_FILES}
                                         ${SRC_HEAD_LIST}
                                         ${SRC_UI_LIST})
+    set_target_properties(${PROJECT_NAME}d PROPERTIES COMPILE_FLAGS "-m32" LINK_FLAGS "-m32")
     target_link_libraries(${PROJECT_NAME}d
       PRIVATE Qt${QT_VERSION_MAJOR}::Core
               Qt${QT_VERSION_MAJOR}::Gui
@@ -52,7 +51,7 @@ if(CMAKE_BUILD_TYPE AND (CMAKE_BUILD_TYPE STREQUAL "Debug"))
 
     target_link_libraries(${PROJECT_NAME}d PRIVATE dwmapi user32 shell32 advapi32)
 
-    target_link_libraries(${PROJECT_NAME}d PRIVATE NsCatGrayQtCorel)
+    target_link_libraries(${PROJECT_NAME}d PRIVATE NsCatGrayQtCore)
 
     target_include_directories(${PROJECT_NAME}d PUBLIC ${PROJECT_SOURCE_DIR})
     set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/CatQtPlugins/WidgetPlugin/${PROJECT_NAME}d.dll)
@@ -64,10 +63,11 @@ if(CMAKE_BUILD_TYPE AND (CMAKE_BUILD_TYPE STREQUAL "Debug"))
     )
 
 elseif(CMAKE_BUILD_TYPE AND (CMAKE_BUILD_TYPE STREQUAL "Release"))
-    add_library(${PROJECT_NAME} SHARED ${CURPATH_DIR_LIB_SRCS}
+    add_library(${PROJECT_NAME} MODULE ${CURPATH_DIR_LIB_SRCS}
                                         ${PROJECT_QRC_FILES}
                                         ${SRC_HEAD_LIST}
                                         ${SRC_UI_LIST})
+    set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-m32" LINK_FLAGS "-m32")
     target_link_libraries(${PROJECT_NAME}
       PRIVATE Qt${QT_VERSION_MAJOR}::Core
               Qt${QT_VERSION_MAJOR}::Gui
@@ -75,7 +75,7 @@ elseif(CMAKE_BUILD_TYPE AND (CMAKE_BUILD_TYPE STREQUAL "Release"))
 
     target_link_libraries(${PROJECT_NAME} PRIVATE dwmapi user32 shell32 advapi32)
 
-    target_link_libraries(${PROJECT_NAME} PRIVATE NsCatGrayQtCorel)
+    target_link_libraries(${PROJECT_NAME} PRIVATE NsCatGrayQtCore)
 
     target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})
     set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/CatQtPlugins/WidgetPlugin/${PROJECT_NAME}.dll)

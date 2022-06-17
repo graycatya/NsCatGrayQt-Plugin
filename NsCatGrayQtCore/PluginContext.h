@@ -49,6 +49,8 @@ class PluginContext {
     bool ExecuteInstallEventFunction(const tstring &installEvent);
     bool ExecuteButtonClickedEventFunction(const tstring &buttonName);
 
+    std::map<tstring, long> GetInstallEventBindMap();
+
   private:
     PluginContext();
 
@@ -60,4 +62,5 @@ class PluginContext {
     ExtraParameters *m_pluginParms;
     std::map<tstring, long> m_installEventBindMap;
     std::map<tstring, long> m_buttonClickedEventBindMap;
+    static PluginContext* context;
 };

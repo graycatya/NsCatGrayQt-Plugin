@@ -23,6 +23,8 @@ Qt安装包会默认将安装目录添加`QTDIR`环境变量，如果没有自�
 
 编译支持CMake，Qmake，可直接编译NsCatGrayQt-Plugin目录下的cmake与qmake工程。编译成功后会生成（Debug版：`QtWidgetPlugind.dll`,`QtQuickPlugind.dll` Release版：`QtWidgetPlugin.dll`,`QtQuickPlugin.dll`）
 
+**生成安装包**
+
 
 
 # 演示

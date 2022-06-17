@@ -29,8 +29,8 @@ set(SOURCES
     stdafx.cpp
 )
 
-add_library(${PROJECT_NAME} SHARED ${SOURCES})
-add_library(${PROJECT_NAME}l STATIC ${SOURCES})
+add_library(${PROJECT_NAME} ${SOURCES})
+#add_library(${PROJECT_NAME}l STATIC ${SOURCES})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE dwmapi user32 shell32 advapi32)
-target_link_libraries(${PROJECT_NAME}l PRIVATE dwmapi user32 shell32 advapi32)
+#target_link_libraries(${PROJECT_NAME}l PRIVATE dwmapi user32 shell32 advapi32)

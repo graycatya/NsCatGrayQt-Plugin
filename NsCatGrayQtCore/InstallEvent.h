@@ -21,6 +21,7 @@
 ********************************************************************************************************************************************************/
 
 #pragma once
+#include <winnt.h>
 
 #define INSTALL_EVENT_UI_PREPARED              TEXT("UI_PREPARED")
 #define INSTALL_EVENT_START_EXTRACT_FILES      TEXT("START_EXTRACT_FILES")

@@ -3,6 +3,7 @@
 #include "DriverInfo.h"
 #include <QFileDialog>
 #include <QDir>
+#include <QMessageBox>
 
 QWidgetSetup::QWidgetSetup(QWidget *parent) :
     QWidget(parent),
@@ -116,7 +117,24 @@ void QWidgetSetup::InitConnect()
             }
         }
 
-        PluginContext::Instance()->ExecuteInstallEventFunction(INSTALL_EVENT_START_EXTRACT_FILES);
+        std::map<tstring, long> mapStudent = PluginContext::Instance()->GetInstallEventBindMap();
+        std::map<tstring, long>::iterator iter;
+        for(iter = mapStudent.begin(); iter != mapStudent.end(); iter++)
+        {
+            QMessageBox::information(this, tstringToQString(iter->first), tstringToQString(iter->first));
+        }
+
+        if(!PluginContext::Instance()->ExecuteInstallEventFunction(INSTALL_EVENT_START_EXTRACT_FILES))
+        {
+            if(PluginContext::Instance()->GetExtraParameters())
+            {
+
+            } else {
+                QMessageBox::information(this, "GetExtraParameters err", "GetExtraParameters err");
+            }
+
+            QMessageBox::information(this, "ExecuteInstallEventFunction err", "ExecuteInstallEventFunction err");
+        }
 
         ui->SetupStacked->setCurrentIndex(1);
     });

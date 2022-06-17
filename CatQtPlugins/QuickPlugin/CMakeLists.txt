@@ -14,7 +14,6 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_definitions("-DUNICODE -D_UNICODE")
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../module/cmake")
 
@@ -49,7 +48,7 @@ if(CMAKE_BUILD_TYPE AND (CMAKE_BUILD_TYPE STREQUAL "Debug"))
 
     target_link_libraries(${PROJECT_NAME}d PRIVATE dwmapi user32 shell32 advapi32)
 
-    target_link_libraries(${PROJECT_NAME}d PRIVATE NsCatGrayQtCorel)
+    target_link_libraries(${PROJECT_NAME}d PRIVATE NsCatGrayQtCore)
 
     target_include_directories(${PROJECT_NAME}d PUBLIC ${PROJECT_SOURCE_DIR})
     set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/CatQtPlugins/QuickPlugin/${PROJECT_NAME}d.dll)
@@ -72,7 +71,7 @@ elseif(CMAKE_BUILD_TYPE AND (CMAKE_BUILD_TYPE STREQUAL "Release"))
 
     target_link_libraries(${PROJECT_NAME} PRIVATE dwmapi user32 shell32 advapi32)
 
-    target_link_libraries(${PROJECT_NAME} PRIVATE NsCatGrayQtCorel)
+    target_link_libraries(${PROJECT_NAME} PRIVATE NsCatGrayQtCore)
 
     target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})
     set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/CatQtPlugins/QuickPlugin/${PROJECT_NAME}.dll)

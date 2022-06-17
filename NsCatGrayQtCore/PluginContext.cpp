@@ -23,18 +23,23 @@
 #include "stdafx.h"
 #include "PluginContext.h"
 
+PluginContext *PluginContext::context = NULL;
+
 PluginContext::PluginContext() :
-    m_parentHwnd(NULL)
+    m_pluginHandle(NULL)
+    , m_parentHwnd(NULL)
     , m_setupPage(NULL)
-    , m_pluginParms(NULL)
-    , m_pluginHandle(NULL) {
+    , m_pluginParms(NULL) {
     m_exitEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
 }
 
 PluginContext *PluginContext::Instance() {
-    static PluginContext *context = NULL;
+
     if (!context) {
-        context = new PluginContext();
+        if(!context)
+        {
+            context = new PluginContext();
+        }
     }
     return context;
 }
@@ -113,4 +118,9 @@ bool PluginContext::ExecuteButtonClickedEventFunction(const tstring &buttonName)
         return true;
     }
     return false;
+}
+
+std::map<tstring, long> PluginContext::GetInstallEventBindMap()
+{
+    return m_installEventBindMap;
 }

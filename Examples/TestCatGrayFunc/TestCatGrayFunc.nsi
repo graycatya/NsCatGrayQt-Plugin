@@ -18,5 +18,5 @@ Unicode True
 !include "CatGrayFunc.nsh"
 
 Section "Ordinal"
-    Call buildTheInstallationDirectory
+    Call BuildTheInstallationDirectory
 SectionEnd

@@ -28,7 +28,7 @@
 #include <map>
 
 // Support Chinese
-# pragma execution_character_set("utf-8")
+// # pragma execution_character_set("utf-8")
 
 #if (defined _UNICODE || defined UNICODE)
 typedef std::wstring tstring;

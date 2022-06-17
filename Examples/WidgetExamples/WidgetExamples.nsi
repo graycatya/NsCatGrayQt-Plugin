@@ -1,5 +1,7 @@
 # ========================= User Defined Macro ==============================
 # Most time you just need edit user defined macro
+
+
 !define PRODUCT_NAME           "WidgetExamples"
 !define EXE_NAME               "WidgetExamples.exe"
 !define EXE_RELATIVE_PATH      "bin\WidgetExamples.exe"
@@ -9,6 +11,7 @@
 !define INSTALL_ICON_PATH      "../Resource/logo.ico"
 !define UNINSTALL_ICON_PATH    "../Resource/logo.ico"
 !define DEFAULT_INSTALL_DIR    "$PROGRAMFILES\${PRODUCT_NAME}"
+!define BUILDDIR_PATH "..\..\Include"
 
 !ifdef DEBUG
 !define UI_PLUGIN_NAME         QtWidgetPlugind
@@ -35,7 +38,6 @@ VIAddVersionKey "FileDescription"   "${PRODUCT_NAME}"
 VIAddVersionKey "LegalCopyright"    "${PRODUCT_LEGAL}"
 
 # ==================== NSIS Attribute ================================
-
 Unicode True
 
 SetCompressor LZMA
@@ -48,6 +50,10 @@ Name "${PRODUCT_NAME}"
 OutFile "${PRODUCT_NAME}Setup.exe"
 !endif
 
+; !addincludedir "../../Include/"
+
+; !include "CatGrayFunc.nsh"
+
 # ICON
 Icon              "${INSTALL_ICON_PATH}"
 UninstallIcon     "${UNINSTALL_ICON_PATH}"
@@ -55,6 +61,8 @@ UninstallIcon     "${UNINSTALL_ICON_PATH}"
 # UAC
 # RequestExecutionLevel none|user|highest|admin
 RequestExecutionLevel admin
+
+ShowInstDetails show
 
 # Custom Install Page
 Page custom QtUiPage
@@ -96,6 +104,8 @@ Function OnStartExtractFiles
 	StrCmp $0 "" InstallAbort 0
     StrCpy $INSTDIR "$0"
 	${UI_PLUGIN_NAME}::OutputDebugInfo "Install Dir: $0"
+
+	MessageBox MB_ICONQUESTION|MB_YESNO "OnStartExtractFiles" 
 	
 	SetOutPath $INSTDIR
   
@@ -219,17 +229,14 @@ Section "None"
 
 SectionEnd
 
-
-# Uninstall Section
 Section "Uninstall"
-;   !insertmacro MUI_STARTMENU_GETFOLDER "Application" $ICONS_GROUP
   SetShellVarContext all
   Delete "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME}.lnk"
   Delete "$SMPROGRAMS\${PRODUCT_NAME}\Uninstall ${PRODUCT_NAME}.lnk"
   RMDir "$SMPROGRAMS\${PRODUCT_NAME}\"
   Delete "$DESKTOP\${PRODUCT_NAME}.lnk"
   SetShellVarContext current
-  
+
   SetOutPath "$INSTDIR"
 
   ; Delete installed files
@@ -239,9 +246,9 @@ Section "Uninstall"
 
   RMDir /r "$INSTDIR"
   RMDir "$INSTDIR"
-  
-  SetAutoClose true
+SetAutoClose true
 SectionEnd
+
 
 Function .onInit
 	# makesure plugin directory exist

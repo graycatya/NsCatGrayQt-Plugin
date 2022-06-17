@@ -1,0 +1,71 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"CatQtPlugins/WidgetPlugin/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"id" : "QtWidgetPlugind_autogen_timestamp_deps::@4f004f8c39ea2b2b4a19"
+		}
+	],
+	"id" : "QtWidgetPlugind_autogen::@4f004f8c39ea2b2b4a19",
+	"isGeneratorProvided" : true,
+	"name" : "QtWidgetPlugind_autogen",
+	"paths" : 
+	{
+		"build" : "CatQtPlugins/WidgetPlugin",
+		"source" : "CatQtPlugins/WidgetPlugin"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				1,
+				2
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "out/build/x64-Debug/CatQtPlugins/WidgetPlugin/CMakeFiles/QtWidgetPlugind_autogen",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "out/build/x64-Debug/CatQtPlugins/WidgetPlugin/CMakeFiles/QtWidgetPlugind_autogen.rule",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "out/build/x64-Debug/CatQtPlugins/WidgetPlugin/QtWidgetPlugind_autogen/timestamp.rule",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "UTILITY"
+}
