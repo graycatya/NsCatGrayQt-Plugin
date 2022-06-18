@@ -13,7 +13,8 @@ TARGET = QtWidgetPlugind
 include($$PWD/../../NsCatGrayQtCore/NsCatGrayQtCore.pri)
 
 SOURCES += \
-    NsisQtWidgetPlugin.cpp
+    NsisQtWidgetPlugin.cpp \
+    Dllmain.cpp
 
 HEADERS += \
     $$PWD/QWidgetSetup.h \

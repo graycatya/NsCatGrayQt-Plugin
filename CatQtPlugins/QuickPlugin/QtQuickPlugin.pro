@@ -32,7 +32,8 @@ QMAKE_POST_LINK += copy /Y $$QtQuickPluginSourceFile $$QtQuickPluginNSISPluginDi
 
 SOURCES += \
     NsisQtQuickPlugin.cpp \
-    QQuickSetup.cpp
+    QQuickSetup.cpp \
+    Dllmain.cpp
 
 HEADERS += \
     QQuickSetup.h

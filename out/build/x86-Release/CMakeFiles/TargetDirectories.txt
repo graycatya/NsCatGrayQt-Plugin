@@ -1,7 +1,0 @@
-D:/code/NsCatGrayQt-Plugin/out/build/x86-Release/CMakeFiles/ALL_BUILD.dir
-D:/code/NsCatGrayQt-Plugin/out/build/x86-Release/CMakeFiles/ZERO_CHECK.dir
-D:/code/NsCatGrayQt-Plugin/out/build/x86-Release/NsCatGrayQtCore.out/CMakeFiles/NsCatGrayQtCore.dir
-D:/code/NsCatGrayQt-Plugin/out/build/x86-Release/NsCatGrayQtCore.out/CMakeFiles/NsCatGrayQtCorel.dir
-D:/code/NsCatGrayQt-Plugin/out/build/x86-Release/NsCatGrayQtCore.out/CMakeFiles/ALL_BUILD.dir
-D:/code/NsCatGrayQt-Plugin/out/build/x86-Release/CatQtPlugins/WidgetPlugin/CMakeFiles/ALL_BUILD.dir
-D:/code/NsCatGrayQt-Plugin/out/build/x86-Release/CatQtPlugins/QuickPlugin/CMakeFiles/ALL_BUILD.dir

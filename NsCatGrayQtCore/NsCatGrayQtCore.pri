@@ -10,7 +10,6 @@ HEADERS += \
 SOURCES += \
     $$PWD/DriverInfo.cpp \
     $$PWD/PluginContext.cpp \
-    $$PWD/dllmain.cpp \
     $$PWD/stdafx.cpp
 
 INCLUDEPATH += $$PWD

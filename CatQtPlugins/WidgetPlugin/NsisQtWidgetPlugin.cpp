@@ -1,6 +1,5 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "QWidgetSetup.h"
-#include<fstream>
 
 wchar_t *QString2Wchar(QString buf)
 {
@@ -74,11 +73,6 @@ NSISAPI BindInstallEventToNsisFunc(HWND hwndParent, int stringSize, TCHAR *varia
 
     TCHAR szEventName[MAX_PATH] = { 0 };
     popstring(szEventName);
-    std::ofstream ofs;
-    ofs.open("./01.txt", std::ios::out | std::ios::app);
-
-    ofs << tstringToQString(szEventName).toStdString() << std::endl;
-    ofs.close();
     long callbackFuncAddress = popint();
 
     PluginContext::Instance()->BindInstallEvent(szEventName, callbackFuncAddress);
@@ -89,11 +83,6 @@ NSISAPI BindButtonClickedEventToNsisFunc(HWND hwndParent, int stringSize, TCHAR 
 
     TCHAR szControlName[MAX_PATH] = { 0 };
     popstring(szControlName);
-    std::ofstream ofs;
-    ofs.open("./02.txt", std::ios::out | std::ios::app);
-
-    ofs << tstringToQString(szControlName).toStdString() << std::endl;
-    ofs.close();
     long callbackFuncAddress = popint();
 
     PluginContext::Instance()->BindButtonClickedEvent(szControlName, callbackFuncAddress);

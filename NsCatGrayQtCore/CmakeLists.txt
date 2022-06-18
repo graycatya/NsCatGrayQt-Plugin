@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+﻿cmake_minimum_required(VERSION 3.10)
 
 project(NsCatGrayQtCore LANGUAGES CXX)
 
@@ -16,7 +16,6 @@ add_definitions("-DUNICODE -D_UNICODE")
 message(STATUS ${CMAKE_CURRENT_SOURCE_DIR})
 
 set(SOURCES
-    dllmain.cpp
     DriverInfo.h
     DriverInfo.cpp
     InstallEvent.h
