@@ -4,13 +4,20 @@
 提供一种创建漂亮地、现代化地Windows平台安装界面的方式。
 基于Nsis+Qt完成,提供QWidgets,Quick实现案例。
 
+**NsCatGrayQt-Plugin结构图**
+
+![NsCatGrayQt-Plugin结构图](./Algorithm/CatSoftwareStarterStructure.png)
+
+[参考项目](https://github.com/winsoft666/NSIS-UI-Plugin)
+站在巨人的肩上创新改进!
+
 ---
 
-**1. NSIS**
+**NSIS**
 
 从[https://nsis.sourceforge.io/Download](https://nsis.sourceforge.io/Download) 下载NSIS并安装,新增系统环境变量`NSIS_DIR`为NSIS安装目录。
 
-**2. Qt**
+**Qt**
 
 因为插件默认使用Qt作为界面库，所以需要安装Qt。
 Qt安装包会默认将安装目录添加`QTDIR`环境变量，如果没有自动添加，则需要手动添加。
