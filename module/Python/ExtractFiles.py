@@ -21,6 +21,7 @@ class ExtractFile:
     Safeuninstall = False
     NsisScript = ""
     __NsisFile = None
+    __BuilDirTotalDimensions = 0
 
     def __init__(self, packdir, nsisscript, safeuninstall) -> None:
         self.Packagedirectory = packdir
@@ -33,6 +34,7 @@ class ExtractFile:
             self.NsisScript += '/'
         self.__NsisFile = open(self.NsisScript + "CatGrayBuildFunc.nsh", "w")
         self.__Buildinstall()
+        self.__NsisFile.write("\n")
         self.__BuildUninstall()
         self.__NsisFile.close()
         self.__NsisFile = None
@@ -41,6 +43,11 @@ class ExtractFile:
     def __Buildinstall(self):
         print(os.listdir(self.Packagedirectory))
         print(os.stat(self.Packagedirectory))
+        self.__NsisFile.write("Function ___ExtractFiles\n")
+        self.__NsisFile.write("FunctionEnd\n")
+        pass
+
+    def __BuildTraversalinstall(self, listdir):
         pass
 
     def __BuildUninstall(self):
@@ -52,6 +59,7 @@ class ExtractFile:
 
     def __BuildSafeUninstall(self):
         pass 
+    
 
     def __BuildUnSafeUninstall(self):
         self.__NsisFile.write("Function un.UninstallAll\n")
