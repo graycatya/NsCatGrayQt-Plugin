@@ -19,13 +19,23 @@ Qt安装包会默认将安装目录添加`QTDIR`环境变量，如果没有自�
 
 # 开始使用
 
+**目录描述**
+
+```txt
+CatQtPlugins    -- 提供了Quick，QWidget代码案例
+VCRuntimeDLL    -- 放置VC++运行时库文件（Debug版和Release版），Qt界面库默认采用MD模式编译，运行时需要依赖VC++运行时库
+Include         -- 自定义Nsis头文件
+module          -- 提供cmake模块，nsis安装函数生成脚本
+NsCatGrayQtCore -- C++与nsis交互底层实现
+```
+
 **编译**
 
 编译支持CMake，Qmake，可直接编译NsCatGrayQt-Plugin目录下的cmake与qmake工程。编译成功后会生成（Debug版：`QtWidgetPlugind.dll`,`QtQuickPlugind.dll` Release版：`QtWidgetPlugin.dll`,`QtQuickPlugin.dll`）
 
-**生成安装包**
 
 
 
 # 演示
 
+![Algorithm_0](./Algorithm/20220618_111700.gif)

@@ -105,8 +105,6 @@ Function OnStartExtractFiles
     StrCpy $INSTDIR "$0"
 	${UI_PLUGIN_NAME}::OutputDebugInfo "Install Dir: $0"
 
-	MessageBox MB_ICONQUESTION|MB_YESNO "OnStartExtractFiles" 
-	
 	SetOutPath $INSTDIR
   
     GetFunctionAddress $0 ___ExtractFiles
