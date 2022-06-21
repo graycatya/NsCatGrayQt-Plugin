@@ -48,6 +48,11 @@ void QQuickSetup::SetInstallStepDescription(const tstring &description, int prog
     m_waitingAddItemsMutex.unlock();
 }
 
+void QQuickSetup::SetUnInstallStepDescription(const tstring &description, int progressValue)
+{
+
+}
+
 void QQuickSetup::NsisExtractFilesFinished()
 {
     emit nsisExtractFilesFinished();

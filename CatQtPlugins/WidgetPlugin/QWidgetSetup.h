@@ -29,6 +29,7 @@ public:
     void SetInstallDirectory(const tstring &dir) override;
     tstring GetInstallDirectory() override;
     void SetInstallStepDescription(const tstring &description, int progressValue = -1) override;
+    void SetUnInstallStepDescription(const tstring &description, int progressValue = -1) override;
     void NsisExtractFilesFinished() override;
     bool IsCreateDesktopShortcutEnabled() override;
     bool IsAutoStartupOnBootEnabled() override;

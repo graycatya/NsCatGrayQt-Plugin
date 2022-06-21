@@ -30,6 +30,7 @@ public:
     virtual void SetInstallDirectory(const tstring &dir) = 0;
     virtual tstring GetInstallDirectory() = 0;
     virtual void SetInstallStepDescription(const tstring &description, int progressValue = -1) = 0;
+    virtual void SetUnInstallStepDescription(const tstring &description, int progressValue = -1) = 0;
     virtual bool IsCreateDesktopShortcutEnabled() = 0;
     virtual bool IsAutoStartupOnBootEnabled() = 0;
     virtual void NsisExtractFilesFinished() = 0;

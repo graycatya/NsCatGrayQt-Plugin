@@ -144,6 +144,19 @@ NSISAPI SetInstallStepDescription(HWND hwndParent, int stringSize, TCHAR *variab
     }
 }
 
+NSISAPI SetUnInstallStepDescription(HWND hwndParent, int stringSize, TCHAR *variables, stack_t **stacktop, ExtraParameters *extra) {
+    NSMETHOD_INIT();
+    TCHAR szDescription[MAX_PATH] = { 0 };
+    long percent = -1;
+
+    popstring(szDescription);
+    percent = popint();
+
+    if (PluginContext::Instance()->GetSetupPage()) {
+        PluginContext::Instance()->GetSetupPage()->SetUnInstallStepDescription(szDescription, percent);
+    }
+}
+
 NSISAPI IsCreateDesktopShortcutEnabled(HWND hwndParent, int stringSize, TCHAR *variables, stack_t **stacktop, ExtraParameters *extra) {
     NSMETHOD_INIT();
     long enabled = 0;

@@ -63,6 +63,13 @@ void QWidgetSetup::SetInstallStepDescription(const tstring &description, int pro
     m_waitingAddItemsMutex.unlock();
 }
 
+void QWidgetSetup::SetUnInstallStepDescription(const tstring &description, int progressValue)
+{
+    QMetaObject::invokeMethod(this, [this, progressValue]() {
+
+    }, Qt::QueuedConnection);
+}
+
 void QWidgetSetup::NsisExtractFilesFinished()
 {
     QMetaObject::invokeMethod(this, [this]() {

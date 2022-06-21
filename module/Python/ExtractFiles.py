@@ -4,6 +4,7 @@ import string
 import sys
 import os
 import argparse
+from queue import LifoQueue
 
 class AppParser:
     Parser = None
@@ -22,6 +23,9 @@ class ExtractFile:
     NsisScript = ""
     __NsisFile = None
     __BuilDirTotalDimensions = 0
+    __BuilFileTotalDimensions = 0
+    __CurScriptIndex = 0
+    __UnStack = LifoQueue()
 
     def __init__(self, packdir, nsisscript, safeuninstall) -> None:
         self.Packagedirectory = packdir
@@ -32,32 +36,91 @@ class ExtractFile:
     def Build(self):
         if self.NsisScript[-1] != '/':
             self.NsisScript += '/'
+        
         self.__NsisFile = open(self.NsisScript + "CatGrayBuildFunc.nsh", "w")
+        self.__CurScriptIndex = 0
+        self.__BuildPathStatistics(self.Packagedirectory)
         self.__Buildinstall()
         self.__NsisFile.write("\n")
+        self.__CurScriptIndex = 0
         self.__BuildUninstall()
         self.__NsisFile.close()
         self.__NsisFile = None
+
         pass
 
     def __Buildinstall(self):
-        print(os.listdir(self.Packagedirectory))
-        print(os.stat(self.Packagedirectory))
         self.__NsisFile.write("Function ___ExtractFiles\n")
+        self.__BuildTraversalinstall(self.Packagedirectory)
         self.__NsisFile.write("FunctionEnd\n")
         pass
 
-    def __BuildTraversalinstall(self, listdir):
+    def __BuildTraversalinstall(self, dir):
+        if not os.path.isdir(dir):
+            return
+        
+        for fi in os.listdir(dir):
+            full_path = os.path.join(dir, fi)
+
+            if os.path.isdir(full_path):
+                sub_dir = full_path[len(self.Packagedirectory):]
+                self.__CurScriptIndex += 1
+                self.__NsisFile.write('   CreateDirectory "$INSTDIR{0}"\n'.format(sub_dir))
+                self.__NsisFile.write('   {0}::SetInstallStepDescription "Create Directory: {1}" {2}\n'
+                                             .format('${UI_PLUGIN_NAME}', '$INSTDIR' + sub_dir,
+                                                     self.__CurScriptIndex * 100 / (self.__BuilDirTotalDimensions + self.__BuilFileTotalDimensions)))
+                self.__BuildTraversalinstall(full_path)
+            else:
+                self.__CurScriptIndex += 1
+                self.__NsisFile.write('   SetOutPath "$INSTDIR{0}"\n'.format(dir[len(self.Packagedirectory):]))
+                self.__NsisFile.write('   File "{0}"\n'.format(full_path))
+                self.__NsisFile.write('   {0}::SetInstallStepDescription "Extract File: $INSTDIR{1}" {2}\n'
+                                             .format('${UI_PLUGIN_NAME}', full_path[len(self.Packagedirectory):], 
+                                             self.__CurScriptIndex * 100 / (self.__BuilDirTotalDimensions + self.__BuilFileTotalDimensions)))
         pass
 
     def __BuildUninstall(self):
         if self.Safeuninstall:
-            self.__BuildSafeUninstall()
+            self.__NsisFile.write("Function un.UninstallAll\n")
+            self.__BuildSafeUninstall(self.Packagedirectory)
+            while not self.__UnStack.empty(): 
+                self.__NsisFile.write(self.__UnStack.get())
+            self.__NsisFile.write('   RMDir "$INSTDIR"\n')
+            self.__NsisFile.write('   {0}::SetUnInstallStepDescription "Delete Folder: $INSTDIR" {1}\n' \
+                                             .format('${UI_PLUGIN_NAME}', 
+                                             100))
+            self.__NsisFile.write("FunctionEnd\n")
         else:
             self.__BuildUnSafeUninstall()
         pass
 
-    def __BuildSafeUninstall(self):
+    def __BuildSafeUninstall(self, dir):
+
+        if not os.path.isdir(dir):
+            return
+        for fi in os.listdir(dir):
+            full_path = os.path.join(dir, fi)
+
+            if os.path.isdir(full_path):
+                sub_dir = full_path[len(self.Packagedirectory):]
+                self.__CurScriptIndex += 1
+                script = '   RMDir "$INSTDIR{0}"\n'.format(sub_dir)
+                script += '   {0}::SetUnInstallStepDescription "Delete Folder: $INSTDIR{1}" {2}\n' \
+                                             .format('${UI_PLUGIN_NAME}', full_path[len(self.Packagedirectory):], 
+                                             100 - (self.__CurScriptIndex * 100 / (self.__BuilDirTotalDimensions + self.__BuilFileTotalDimensions)))
+                self.__UnStack.put(script)
+                self.__BuildSafeUninstall(full_path)
+                pass
+            else:
+                self.__CurScriptIndex += 1
+                script = '   Delete "$INSTDIR{0}"\n'.format(full_path[len(self.Packagedirectory):])
+                script += '   {0}::SetUnInstallStepDescription "Delete File: $INSTDIR{1}" {2}\n' \
+                                             .format('${UI_PLUGIN_NAME}', full_path[len(self.Packagedirectory):], 
+                                             100 - (self.__CurScriptIndex * 100 / (self.__BuilDirTotalDimensions + self.__BuilFileTotalDimensions)))
+                self.__UnStack.put(script)
+                
+                pass
+
         pass 
     
 
@@ -76,6 +139,20 @@ class ExtractFile:
         self.__NsisFile.write("   RMDir /r \"$INSTDIR\"\n")
         self.__NsisFile.write("   RMDir \"$INSTDIR\"\n")
         self.__NsisFile.write("FunctionEnd\n")
+
+    def __BuildPathStatistics(self, path):
+        if not os.path.isdir(path):
+            return 
+        
+        files = os.listdir(path)
+        for fi_index in files:
+            fi_d = os.path.join(path, fi_index)
+            if os.path.isdir(fi_d):
+                self.__BuilDirTotalDimensions += 1
+                self.__BuildPathStatistics(fi_d)
+            else:
+                self.__BuilFileTotalDimensions += 1
+
 
 
 
