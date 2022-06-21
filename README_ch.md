@@ -49,14 +49,14 @@ Examples        -- nsis脚本打包案例
 ExtractFiles.py [-h] [--builddir BUILDDIR] [--safeuninstall] [--outdir OUTDIR]
 ExtractFiles.py' '--builddir' './' '--safeuninstall'
 
-  --builddir BUILDDIR  Nsis package directory
-  --safeuninstall      Whether the Nsis script is unloaded in safe mode
-  --outdir OUTDIR      Nsis script output path
+  --builddir BUILDDIR  Nsis需要打包的目录路径
+  --safeuninstall      Nsis脚本安全模式下卸载
+  --outdir OUTDIR      Nsis脚本输出路径
 ```
 
 使用ExtractFiles脚本后将会生成CatGrayBuildFunc.nsh模块(安装函数与卸载函数)
 
-
+![build_CatGrayBuildFunc](./Algorithm/20220621_174108.gif)
 
 # 演示
 
