@@ -70,6 +70,7 @@ Thumbs.db
 /x64/
 /build*/
 *.user.*
+/CatSoftwareStarterPlugin
 
 # qtcreator generated files
 *.pro.user*
