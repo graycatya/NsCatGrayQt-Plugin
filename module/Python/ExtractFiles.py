@@ -65,16 +65,16 @@ class ExtractFile:
             if os.path.isdir(full_path):
                 sub_dir = full_path[len(self.Packagedirectory):]
                 self.__CurScriptIndex += 1
-                self.__NsisFile.write('   CreateDirectory "$INSTDIR{0}"\n'.format(sub_dir))
+                self.__NsisFile.write('   CreateDirectory "$INSTDIR\{0}"\n'.format(sub_dir))
                 self.__NsisFile.write('   {0}::SetInstallStepDescription "Create Directory: {1}" {2}\n'
-                                             .format('${UI_PLUGIN_NAME}', '$INSTDIR' + sub_dir,
+                                             .format('${UI_PLUGIN_NAME}', '$INSTDIR\\' + sub_dir,
                                                      self.__CurScriptIndex * 100 / (self.__BuilDirTotalDimensions + self.__BuilFileTotalDimensions)))
                 self.__BuildTraversalinstall(full_path)
             else:
                 self.__CurScriptIndex += 1
-                self.__NsisFile.write('   SetOutPath "$INSTDIR{0}"\n'.format(dir[len(self.Packagedirectory):]))
+                self.__NsisFile.write('   SetOutPath "$INSTDIR\{0}"\n'.format(dir[len(self.Packagedirectory):]))
                 self.__NsisFile.write('   File "{0}"\n'.format(full_path))
-                self.__NsisFile.write('   {0}::SetInstallStepDescription "Extract File: $INSTDIR{1}" {2}\n'
+                self.__NsisFile.write('   {0}::SetInstallStepDescription "Extract File: $INSTDIR\{1}" {2}\n'
                                              .format('${UI_PLUGIN_NAME}', full_path[len(self.Packagedirectory):], 
                                              self.__CurScriptIndex * 100 / (self.__BuilDirTotalDimensions + self.__BuilFileTotalDimensions)))
         pass
@@ -105,7 +105,7 @@ class ExtractFile:
                 sub_dir = full_path[len(self.Packagedirectory):]
                 self.__CurScriptIndex += 1
                 script = '   RMDir "$INSTDIR{0}"\n'.format(sub_dir)
-                script += '   {0}::SetUnInstallStepDescription "Delete Folder: $INSTDIR{1}" {2}\n' \
+                script += '   {0}::SetUnInstallStepDescription "Delete Folder: $INSTDIR\{1}" {2}\n' \
                                              .format('${UI_PLUGIN_NAME}', full_path[len(self.Packagedirectory):], 
                                              100 - (self.__CurScriptIndex * 100 / (self.__BuilDirTotalDimensions + self.__BuilFileTotalDimensions)))
                 self.__UnStack.put(script)
@@ -114,7 +114,7 @@ class ExtractFile:
             else:
                 self.__CurScriptIndex += 1
                 script = '   Delete "$INSTDIR{0}"\n'.format(full_path[len(self.Packagedirectory):])
-                script += '   {0}::SetUnInstallStepDescription "Delete File: $INSTDIR{1}" {2}\n' \
+                script += '   {0}::SetUnInstallStepDescription "Delete File: $INSTDIR\{1}" {2}\n' \
                                              .format('${UI_PLUGIN_NAME}', full_path[len(self.Packagedirectory):], 
                                              100 - (self.__CurScriptIndex * 100 / (self.__BuilDirTotalDimensions + self.__BuilFileTotalDimensions)))
                 self.__UnStack.put(script)
