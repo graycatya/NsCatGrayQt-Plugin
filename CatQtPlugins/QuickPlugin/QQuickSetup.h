@@ -28,6 +28,8 @@ public:
     void NsisExtractFilesFinished() override;
     bool IsCreateDesktopShortcutEnabled() override;
     bool IsAutoStartupOnBootEnabled() override;
+    bool IsRunApp() override { return false; }
+
 
 private:
     void InitConnect();

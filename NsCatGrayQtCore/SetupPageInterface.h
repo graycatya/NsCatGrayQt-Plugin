@@ -34,4 +34,5 @@ public:
     virtual bool IsCreateDesktopShortcutEnabled() = 0;
     virtual bool IsAutoStartupOnBootEnabled() = 0;
     virtual void NsisExtractFilesFinished() = 0;
+    virtual bool IsRunApp() = 0;
 };
